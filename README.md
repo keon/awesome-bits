@@ -108,7 +108,7 @@ i = (i ^ -1) + 1; // i = -i
 ```
 2 << (n-1);
 ```
-**Whether a number is some factorial of 2**
+**Whether a number is power of 2**
 ```
 n > 0 && (n & (n - 1)) == 0;
 ```
