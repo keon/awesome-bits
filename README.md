@@ -9,15 +9,15 @@
 
 
 ## Integers
-**Set n-th bit**
+**Set n<sup>th</sup> bit**
 ```
 x | (1<<n)
 ```
-**Unset n-th bit**
+**Unset n<sup>th</sup> bit**
  ```
  x & ~(1<<n)
  ```
-**Toggle n-th bit**
+**Toggle n<sup>th</sup> bit**
 ```
 x ^ (1<<n)
 ```
@@ -55,11 +55,11 @@ n << 1; // n*2
 ```
 n >> 1; // n/2
 ```
-**Multiply by the m-th power of 2**
+**Multiply by the m<sup>th</sup> power of 2**
 ```
 n << m;
 ```
-**Divide by the m-th power of 2**
+**Divide by the m<sup>th</sup> power of 2**
 ```
 n >> m;
 ```
@@ -104,7 +104,7 @@ a & ((a-b) >> 31) | b & (~(a-b) >> 31);
 i = ~i + 1; // or
 i = (i ^ -1) + 1; // i = -i
 ```
-**Calculate 2^n**
+**Calculate 2<sup>n</sup>**
 ```
 2 << (n-1);
 ```
@@ -112,7 +112,7 @@ i = (i ^ -1) + 1; // i = -i
 ```
 n > 0 && (n & (n - 1)) == 0;
 ```
-**Modulo 2^n against m**
+**Modulo 2<sup>n</sup> against m**
 ```
 m & (n - 1);
 ```
@@ -121,15 +121,15 @@ m & (n - 1);
 (x + y) >> 1;
 ((x ^ y) >> 1) + (x & y);
 ```
-**Get the m-th bit of n (from low to high)**
+**Get the m<sup>th</sup> bit of n (from low to high)**
 ```
 (n >> (m-1)) & 1;
 ```
-**Set the m-th bit of n to 0 (from low to high)**
+**Set the m<sup>th</sup> bit of n to 0 (from low to high)**
 ```
 n & ~(1 << (m-1));
 ```
-**Check if n-th bit is set**
+**Check if n<sup>th</sup> bit is set**
 ```
 if (x & (1<<n)) {
   n-th bit is set
@@ -164,7 +164,7 @@ x | (x+1)
 ~n + 1;
 (n ^ -1) + 1;
 ```
-**if (x==a) x=b; if (x==b) x=a;**
+**`if (x == a) x = b; if (x == b) x = a;`**
 ```
 x = a ^ b ^ x;
 ```
@@ -206,7 +206,7 @@ XOR by backtick/chr(96)/binary('1100000')/hex('60') => (x ^ '`')
 eg. ('d' ^ '`') => 4 ; ('x' ^ '`') => 25
 ```
 
-## ETC
+## Miscellaneous
 
 **Fast color conversion from R5G5B5 to R8G8B8 pixel format using shifts**
 ```
@@ -215,5 +215,7 @@ G8 = (R5 << 3) | (R5 >> 2)
 B8 = (R5 << 3) | (R5 >> 2)
 ```
 Note: using anything other than the English letters will produce garbage results
+
+## Additional Resources
 
 For more Complicated Stuffs [Read This](https://graphics.stanford.edu/~seander/bithacks.html)
