@@ -70,8 +70,10 @@ n << m;
 n >> m;
 ```
 **Check Equality**
+
+it's 35% faster in JS
 ```
-(a^b) == 0; // a == b // 35% faster in JS
+(a^b) == 0; // a == b
 ```
 **Check odd number**
 ```
