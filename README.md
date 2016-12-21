@@ -32,7 +32,12 @@ v |= v >> 8;
 v |= v >> 16;
 v++;
 ```
-
+**Round, Ceil, Floor**
+```
+(x + 0.5) >> 0; // round(x)
+(x + 1) >> 0; // ceil(x)
+x >> 0; // floor(x)
+```
 **Get the maximum integer**
 ```
 int maxInt = ~(1 << 31);
@@ -64,11 +69,15 @@ n << m;
 ```
 n >> m;
 ```
+**Check Equality**
+```
+(a^b) == 0; // a == b
+```
 **Check odd number**
 ```
 (n & 1) == 1;
 ```
-**Exchange two values**
+**Exchange (swap) two values**
 ```
 a ^= b;
 b ^= a;
@@ -89,6 +98,11 @@ a & ((a-b) >> 31) | b & (~(a-b) >> 31);
 **Check whether both have the same sign**
 ```
 (x ^ y) >= 0;
+```
+**Flip sign**
+```
+i = ~i + 1; // or
+i = (i ^ -1) + 1; // i = -i
 ```
 **Calculate 2^n**
 ```
