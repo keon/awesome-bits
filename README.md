@@ -110,7 +110,7 @@ i = (i ^ -1) + 1; // i = -i
 ```
 **Whether is factorial of 2**
 ```
-n > 0 ? (n & (n - 1)) == 0 : false;
+n > 0 && (n & (n - 1)) == 0;
 ```
 **Modulo 2^n against m**
 ```
