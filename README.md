@@ -250,6 +250,29 @@ float geometric_mean(float* list, size_t length) {
 ```
 See [here](https://github.com/leegao/float-hacks#geometric-mean-1) for its derivation.
 
+**Fast Natural Logarithm**
+
+```c
+#DEFINE EPSILON 1.1920928955078125e-07
+#DEFINE LOG2 0.6931471805599453
+return (f2i(x) - (0x3f800000 - 0x66774)) * EPSILON * LOG2
+```
+
+<sub>*Caveat: The bias term of `0x66774` is meant to center the method. We multiply by `ln(2)` at the end because the rest of the method computes the `log2(x)` function.*</sub>
+
+See [here](https://github.com/leegao/float-hacks#log-1) for its derivation.
+
+**Fast Exponent**
+
+```c
+return i2f(0x3f800000 + (uint32_t)(x * (0x800000 + 0x38aa22)))
+```
+
+<sub>*Caveat: The bias term of `0x38aa22` here corresponds to a multiplicative scaling of the base. In particular, it
+corresponds to `z` such that 2<sup>z</sup> = e*</sub>
+
+See [here](https://github.com/leegao/float-hacks#exp-1) for its derivation.
+
 ## Strings
 
 **Convert letter to lowercase:**
