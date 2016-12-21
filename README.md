@@ -208,7 +208,7 @@ return i2f(0x5f3759df - f2i(x) / 2);
 
 See [this Wikipedia article](https://en.wikipedia.org/wiki/Fast_inverse_square_root#A_worked_example) for reference.
 
-**Fast n<sup>th</sup> Root via Infinite Series**
+**Fast n<sup>th</sup> Root of positive numbers via Infinite Series**
 ```c
 float root(float x, int n) {
 #DEFINE MAN_MASK 0x7fffff
@@ -220,6 +220,8 @@ float root(float x, int n) {
   return i2f((man + man / n) | ((EXP_BIAS + exp / n) & EXP_MASK));
 }
 ```
+
+See [this blog post](http://www.phailed.me/2012/08/somewhat-fast-square-root/) regarding the derivation.
 
 ## Strings
 
