@@ -2,7 +2,18 @@
 A curated list of awesome bitwise operations and tricks
 
 ## Integers
-
+**Set n-th bit**
+```
+x | (1<<n)
+```
+**Unset n-th bit**
+ ```
+ x & ~(1<<n)
+ ```
+**Toggle n-th bit**
+```
+x ^ (1<<n)
+```
 **Get the maximum integer**
 ```
 int maxInt = ~(1 << 31);
@@ -85,6 +96,29 @@ m & (n - 1);
 ```
 n & ~(1 << (m-1));
 ```
+**Check if n-th bit is set**
+```
+if (x & (1<<n)) {
+  n-th bit is set
+}
+else {
+  n-th bit is not set
+}
+```
+**Isolate (extract) the right most 1 bit**
+```
+x & (-x)
+```
+**Isolate (extract) the right most 0 bit**
+```
+~x & (x+1)
+```
+
+**Right most 0 bit to 1**
+```
+x | (x+1)
+```
+
 **n + 1**
 ```
 -~n
@@ -105,17 +139,19 @@ x = a ^ b ^ x;
 
 ## Strings
 
-Convert letter to lowercase:
-
-**OR by space => (x | ' ')**
-- Result is always lowercase even if letter is already lowercase
-- eg. ('a' | ' ') => 'a' ; ('A' | ' ') => 'a'
+**Convert letter to lowercase:**
+```
+OR by space => (x | ' ')
+Result is always lowercase even if letter is already lowercase
+eg. ('a' | ' ') => 'a' ; ('A' | ' ') => 'a'
+```
 
 **Convert letter to uppercase:**
-- AND by underline => (x & '_')
-- Result is always uppercase even if letter is already uppercase
-- eg. ('a' & '_') => 'A' ; ('A' & '_') => 'A'
-
+```
+AND by underline => (x & '_')
+Result is always uppercase even if letter is already uppercase
+eg. ('a' & '_') => 'A' ; ('A' & '_') => 'A'
+```
 **Invert letter's case:**
 ```
 XOR by space => (x ^ ' ')
