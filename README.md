@@ -169,6 +169,110 @@ x | (x+1)
 x = a ^ b ^ x;
 ```
 
+## Floats
+
+These are techniques inspired by the [fast inverse square root method.](https://en.wikipedia.org/wiki/Fast_inverse_square_root) Most of these
+are original.
+
+**Turn a float into a bit-array (unsigned uint32_t)**
+```c
+#include <stdint.h>
+typedef union {float flt; uint32_t bits} lens_t;
+uint32_t f2i(float x) {
+  return ((lens_t) {.flt = x}).bits;
+}
+```
+<sub>*Caveat: Type pruning via unions is undefined in C++; use `std::memcpy` instead.*</sub>
+
+**Turn a bit-array back into a float**
+```c
+float i2f(uint32_t x) {
+  return ((lens_t) {.bits = x}).flt;
+}
+```
+
+**Approximate the bit-array of a *positive* float using `frexp`**
+
+*`frexp` gives the 2<sup>n</sup> decomposition of a number, so that `man, exp = frexp(x)` means that man * 2<sup>exp</sup> = x and 0.5 <= man < 1.*
+```c
+man, exp = frexp(x);
+return (uint32_t)((2 * man + exp + 125) * 0x800000);
+```
+<sub>*Caveat: This will have at most 2<sup>-16</sup> relative error, since man + 125 clobbers the last 8 bits, saving the first 16 bits of your mantissa.*</sub>
+
+**Fast Inverse Square Root**
+```c
+return i2f(0x5f3759df - f2i(x) / 2);
+```
+<sub>*Caveat: We're using the `i2f` and the `f2i` functions from above instead.*</sub>
+
+See [this Wikipedia article](https://en.wikipedia.org/wiki/Fast_inverse_square_root#A_worked_example) for reference.
+
+**Fast n<sup>th</sup> Root of positive numbers via Infinite Series**
+```c
+float root(float x, int n) {
+#DEFINE MAN_MASK 0x7fffff
+#DEFINE EXP_MASK 0x7f800000
+#DEFINE EXP_BIAS 0x3f800000
+  uint32_t bits = f2i(x);
+  uint32_t man = bits & MAN_MASK;
+  uint32_t exp = (bits & EXP_MASK) - EXP_BIAS;
+  return i2f((man + man / n) | ((EXP_BIAS + exp / n) & EXP_MASK));
+}
+```
+
+See [this blog post](http://www.phailed.me/2012/08/somewhat-fast-square-root/) regarding the derivation.
+
+**Fast Arbitrary Power**
+```c
+return i2f((1 - exp) * (0x3f800000 - 0x5c416) + f2i(x) * exp)
+```
+
+<sub>*Caveat: The `0x5c416` bias is given to center the method. If you plug in exp = -0.5, this gives the `0x5f3759df` magic constant of the fast inverse root method.*</sub>
+
+See [these set of slides](http://www.bullshitmath.lol/FastRoot.slides.html) for a derivation of this method.
+
+**Fast Geometric Mean**
+
+The geometric mean of a set of `n` numbers is the n<sup>th</sup> root of their
+product.
+
+```c
+#include <stddef.h>
+float geometric_mean(float* list, size_t length) {
+  // Effectively, find the average of map(f2i, list)
+  uint32_t accumulator = 0;
+  for (size_t i = 0; i < length; i++) {
+    accumulator += f2i(list[i]);
+  }
+  return i2f(accumulator / n);
+}
+```
+See [here](https://github.com/leegao/float-hacks#geometric-mean-1) for its derivation.
+
+**Fast Natural Logarithm**
+
+```c
+#DEFINE EPSILON 1.1920928955078125e-07
+#DEFINE LOG2 0.6931471805599453
+return (f2i(x) - (0x3f800000 - 0x66774)) * EPSILON * LOG2
+```
+
+<sub>*Caveat: The bias term of `0x66774` is meant to center the method. We multiply by `ln(2)` at the end because the rest of the method computes the `log2(x)` function.*</sub>
+
+See [here](https://github.com/leegao/float-hacks#log-1) for its derivation.
+
+**Fast Natural Exp**
+
+```c
+return i2f(0x3f800000 + (uint32_t)(x * (0x800000 + 0x38aa22)))
+```
+
+<sub>*Caveat: The bias term of `0x38aa22` here corresponds to a multiplicative scaling of the base. In particular, it
+corresponds to `z` such that 2<sup>z</sup> = e*</sub>
+
+See [here](https://github.com/leegao/float-hacks#exp-1) for its derivation.
+
 ## Strings
 
 **Convert letter to lowercase:**
@@ -218,4 +322,5 @@ Note: using anything other than the English letters will produce garbage results
 
 ## Additional Resources
 
-For more Complicated Stuffs [Read This](https://graphics.stanford.edu/~seander/bithacks.html)
+* [Bit Twiddling Hacks](https://graphics.stanford.edu/~seander/bithacks.html)
+* [Floating Point Hacks](https://github.com/leegao/float-hacks)
