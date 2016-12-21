@@ -71,7 +71,7 @@ n >> m;
 ```
 **Check Equality**
 ```
-(a^b) == 0; // a == b
+(a^b) == 0; // a == b // 35% faster in JS
 ```
 **Check odd number**
 ```
@@ -85,7 +85,11 @@ a ^= b;
 ```
 **Get absolute value**
 ```
-(n ^ (n >> 31)) - (n >> 31);
+//version 1
+x < 0 ? -x : x;
+
+//version 2
+(x ^ (x >> 31)) - (x >> 31);
 ```
 **Get the max of two values**
 ```
@@ -207,6 +211,14 @@ XOR by backtick/chr(96)/binary('1100000')/hex('60') => (x ^ '`')
 eg. ('d' ^ '`') => 4 ; ('x' ^ '`') => 25
 ```
 
+## ETC
+
+**Fast color conversion from R5G5B5 to R8G8B8 pixel format using shifts**
+```
+R8 = (R5 << 3) | (R5 >> 2)
+G8 = (R5 << 3) | (R5 >> 2)
+B8 = (R5 << 3) | (R5 >> 2)
+```
 Note: using anything other than the english letters will produce garbage results
 
 For more Complicated Stuffs [Read This](https://graphics.stanford.edu/~seander/bithacks.html)
