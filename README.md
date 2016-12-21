@@ -223,6 +223,15 @@ float root(float x, int n) {
 
 See [this blog post](http://www.phailed.me/2012/08/somewhat-fast-square-root/) regarding the derivation.
 
+**Fast Arbitrary Power**
+```c
+return i2f((1 - exp) * (0x3f800000 - 0x5c416) + f2i(x) * exp)
+```
+
+<sub>*Caveat: The `0x5c416` bias is given to center the method. If you plug in exp = -0.5, this gives the `0x5f3759df` magic constant of the fast inverse root method.*</sub>
+
+See [these set of slides](http://www.bullshitmath.lol/FastRoot.slides.html) for a derivation of this method.
+
 ## Strings
 
 **Convert letter to lowercase:**
