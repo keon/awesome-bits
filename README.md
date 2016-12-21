@@ -21,6 +21,18 @@ x | (1<<n)
 ```
 x ^ (1<<n)
 ```
+**Round up to the next power of two**
+```
+unsigned int v; //only works if v is 32 bit
+v--;
+v |= v >> 1;
+v |= v >> 2;
+v |= v >> 4;
+v |= v >> 8;
+v |= v >> 16;
+v++;
+```
+
 **Get the maximum integer**
 ```
 int maxInt = ~(1 << 31);
