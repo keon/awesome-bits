@@ -262,7 +262,7 @@ return (f2i(x) - (0x3f800000 - 0x66774)) * EPSILON * LOG2
 
 See [here](https://github.com/leegao/float-hacks#log-1) for its derivation.
 
-**Fast Exponent**
+**Fast Natural Exp**
 
 ```c
 return i2f(0x3f800000 + (uint32_t)(x * (0x800000 + 0x38aa22)))
@@ -322,4 +322,5 @@ Note: using anything other than the English letters will produce garbage results
 
 ## Additional Resources
 
-For more Complicated Stuffs [Read This](https://graphics.stanford.edu/~seander/bithacks.html)
+* [Bit Twiddling Hacks](https://graphics.stanford.edu/~seander/bithacks.html)
+* [Floating Point Hacks](https://github.com/leegao/float-hacks)
