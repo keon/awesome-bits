@@ -169,6 +169,45 @@ x | (x+1)
 x = a ^ b ^ x;
 ```
 
+## Floats
+
+These are techniques inspired by the [fast inverse square root method.](https://en.wikipedia.org/wiki/Fast_inverse_square_root) Most of these
+are original.
+
+**Turn a float into a bit-array (unsigned uint32_t)**
+```c
+#include <stdint.h>
+typedef union {float flt; uint32_t bits} lens_t;
+uint32_t f2i(float x) {
+  return ((lens_t) {.flt = x}).bits;
+}
+```
+<sub>*Caveat: Type pruning via unions is undefined in C++; use `std::memcpy` instead.*</sub>
+
+**Turn a bit-array back into a float**
+```c
+float i2f(uint32_t x) {
+  return ((lens_t) {.bits = x}).flt;
+}
+```
+
+**Approximate the bit-array of a float using `frexp`**
+
+*`frexp` gives the 2<sup>n</sup> decomposition of a number, so that `man, exp = frexp(x)` means that man * 2<sup>exp</sup> = x and 0.5 <= man < 1.*
+```c
+man, exp = frexp(x);
+return (uint32_t)((2 * man + exp + 125) * 2e23);
+```
+<sub>*Caveat: This will have at most 2<sup>-16</sup> relative error, since man + 125 clobbers the last 8 bits, saving the first 16 bits of your mantissa.*</sub>
+
+**Fast Inverse Square Root**
+```c
+return i2f(0x5f3759df - f2i(x) / 2);
+```
+<sub>*Caveat: We're using the `i2f` and the `f2i` functions from above instead.*</sub>
+
+See [this Wikipedia article](https://en.wikipedia.org/wiki/Fast_inverse_square_root#A_worked_example) for reference.
+
 ## Strings
 
 **Convert letter to lowercase:**
