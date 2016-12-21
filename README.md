@@ -106,7 +106,7 @@ i = (i ^ -1) + 1; // i = -i
 ```
 **Calculate 2^n**
 ```
-2 << (n-1);
+1 << n;
 ```
 **Whether is factorial of 2**
 ```
