@@ -32,12 +32,6 @@ v |= v >> 8;
 v |= v >> 16;
 v++;
 ```
-**Round, Ceil, Floor**
-```
-(x + 0.5) >> 0; // round(x)
-(x + 1) >> 0; // ceil(x)
-x >> 0; // floor(x)
-```
 **Get the maximum integer**
 ```
 int maxInt = ~(1 << 31);
