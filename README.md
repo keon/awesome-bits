@@ -232,6 +232,24 @@ return i2f((1 - exp) * (0x3f800000 - 0x5c416) + f2i(x) * exp)
 
 See [these set of slides](http://www.bullshitmath.lol/FastRoot.slides.html) for a derivation of this method.
 
+**Fast Geometric Mean**
+
+The geometric mean of a set of `n` numbers is the n<sup>th</sup> root of their
+product.
+
+```c
+#include <stddef.h>
+float geometric_mean(float* list, size_t length) {
+  // Effectively, find the average of map(f2i, list)
+  uint32_t accumulator = 0;
+  for (size_t i = 0; i < length; i++) {
+    accumulator += f2i(list[i]);
+  }
+  return i2f(accumulator / n);
+}
+```
+See [here](https://github.com/leegao/float-hacks#geometric-mean-1) for its derivation.
+
 ## Strings
 
 **Convert letter to lowercase:**
