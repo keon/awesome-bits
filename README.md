@@ -191,12 +191,12 @@ float i2f(uint32_t x) {
 }
 ```
 
-**Approximate the bit-array of a float using `frexp`**
+**Approximate the bit-array of a *positive* float using `frexp`**
 
 *`frexp` gives the 2<sup>n</sup> decomposition of a number, so that `man, exp = frexp(x)` means that man * 2<sup>exp</sup> = x and 0.5 <= man < 1.*
 ```c
 man, exp = frexp(x);
-return (uint32_t)((2 * man + exp + 125) * 2e23);
+return (uint32_t)((2 * man + exp + 125) * 0x800000);
 ```
 <sub>*Caveat: This will have at most 2<sup>-16</sup> relative error, since man + 125 clobbers the last 8 bits, saving the first 16 bits of your mantissa.*</sub>
 
@@ -207,6 +207,19 @@ return i2f(0x5f3759df - f2i(x) / 2);
 <sub>*Caveat: We're using the `i2f` and the `f2i` functions from above instead.*</sub>
 
 See [this Wikipedia article](https://en.wikipedia.org/wiki/Fast_inverse_square_root#A_worked_example) for reference.
+
+**Fast n<sup>th</sup> Root via Infinite Series**
+```c
+float root(float x, int n) {
+#DEFINE MAN_MASK 0x7fffff
+#DEFINE EXP_MASK 0x7f800000
+#DEFINE EXP_BIAS 0x3f800000
+  uint32_t bits = f2i(x);
+  uint32_t man = bits & MAN_MASK;
+  uint32_t exp = (bits & EXP_MASK) - EXP_BIAS;
+  return i2f((man + man / n) | ((EXP_BIAS + exp / n) & EXP_MASK));
+}
+```
 
 ## Strings
 
