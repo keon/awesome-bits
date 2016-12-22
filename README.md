@@ -3,7 +3,7 @@
 > A curated list of awesome bitwise operations and tricks
 >
 > Maintainer - [Keon Kim](https://github.com/keonkim)
-> Please feel free to [pull requests](https://github.com/keonkim/awesome-nlp/pulls)
+> Please feel free to [pull requests](https://github.com/keonkim/awesome-bits/pulls)
 
 
 
