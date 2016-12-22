@@ -68,6 +68,7 @@ n >> m;
 <sub>*This is 35% faster in Javascript*</sub>
 ```
 (a^b) == 0; // a == b
+!(a^b) // use in an if
 ```
 **Check if a number is odd**
 ```
