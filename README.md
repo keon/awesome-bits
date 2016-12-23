@@ -76,9 +76,13 @@ n >> m;
 ```
 **Exchange (swap) two values**
 ```
+//version 1
 a ^= b;
 b ^= a;
 a ^= b;
+
+//version 2
+a = a ^ b ^ (b = a)
 ```
 **Get the absolute value**
 ```
