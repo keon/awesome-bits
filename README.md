@@ -312,7 +312,7 @@ eg. ('C' & '?') => 3 ; ('Z' ^ '@') => 26
 **Get letter's position in alphabet (for lowercase letters only):**
 ```
 XOR by backtick/chr(96)/binary('1100000')/hex('60') => (x ^ '`')
-eg. ('d' ^ '`') => 4 ; ('x' ^ '`') => 25
+eg. ('d' ^ '`') => 4 ; ('x' ^ '`') => 24
 ```
 
 ## Miscellaneous
