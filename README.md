@@ -330,3 +330,4 @@ Note: using anything other than the English letters will produce garbage results
 * [Bit Twiddling Hacks](https://graphics.stanford.edu/~seander/bithacks.html)
 * [Floating Point Hacks](https://github.com/leegao/float-hacks)
 * [Hacker's Delight](http://www.hackersdelight.org/)
+* [The Bit Twiddler](http://bits.stephan-brumme.com/)
