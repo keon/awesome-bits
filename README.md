@@ -173,7 +173,18 @@ x | (x+1)
 ```
 x = a ^ b ^ x;
 ```
-
+**Swap Adjacent bits**
+```
+((n & 10101010) >> 1) | ((n & 01010101) << 1)
+```
+**Different rightmost bit of numbers m & n**
+```
+(n^m)&-(n^m) // returns 2^x where x is the position of the differnet bit (0 based)
+```
+**Common rightmost bit of numbers m & n**
+```
+~(n^m)&(n^m)+1 // returns 2^x where x is the position of the common bit (0 based)
+```
 ## Floats
 
 These are techniques inspired by the [fast inverse square root method.](https://en.wikipedia.org/wiki/Fast_inverse_square_root) Most of these
