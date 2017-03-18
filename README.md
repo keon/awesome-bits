@@ -111,7 +111,7 @@ i = (i ^ -1) + 1; // i = -i
 ```
 **Calculate 2<sup>n</sup>**
 ```
-2 << (n-1);
+1 << n;
 ```
 **Whether a number is power of 2**
 ```
@@ -119,7 +119,7 @@ n > 0 && (n & (n - 1)) == 0;
 ```
 **Modulo 2<sup>n</sup> against m**
 ```
-m & (n - 1);
+m & ((1 << n) - 1);
 ```
 **Get the average**
 ```
