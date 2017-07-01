@@ -157,6 +157,11 @@ x & (-x)
 x | (x+1)
 ```
 
+**Set the right-most 1 bit to 0**
+```
+x & (x-1)
+```
+
 **n + 1**
 ```
 -~n
