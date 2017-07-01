@@ -37,6 +37,7 @@ v++;
 int maxInt = ~(1 << 31);
 int maxInt = (1 << 31) - 1;
 int maxInt = (1 << -1) - 1;
+int maxInt = -1u >> 1;
 ```
 **Get the minimum integer**
 ```
