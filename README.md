@@ -37,6 +37,7 @@ v++;
 int maxInt = ~(1 << 31);
 int maxInt = (1 << 31) - 1;
 int maxInt = (1 << -1) - 1;
+int maxInt = -1u >> 1;
 ```
 **Get the minimum integer**
 ```
@@ -154,6 +155,11 @@ x & (-x)
 **Set the right-most 0 bit to 1**
 ```
 x | (x+1)
+```
+
+**Set the right-most 1 bit to 0**
+```
+x & (x-1)
 ```
 
 **n + 1**
