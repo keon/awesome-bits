@@ -185,7 +185,7 @@ x = a ^ b ^ x;
 ```
 **Different rightmost bit of numbers m & n**
 ```
-(n^m)&-(n^m) // returns 2^x where x is the position of the differnet bit (0 based)
+(n^m)&-(n^m) // returns 2^x where x is the position of the different bit (0 based)
 ```
 **Common rightmost bit of numbers m & n**
 ```
