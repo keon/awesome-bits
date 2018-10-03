@@ -32,6 +32,13 @@ v |= v >> 8;
 v |= v >> 16;
 v++;
 ```
+**Round down / floor a number**
+```
+n >> 0
+
+5.7812 >> 0 // 5
+
+```
 **Get the maximum integer**
 ```
 int maxInt = ~(1 << 31);
