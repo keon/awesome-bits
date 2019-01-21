@@ -356,4 +356,4 @@ Note: using anything other than the English letters will produce garbage results
 * [Hacker's Delight](http://www.hackersdelight.org/)
 * [The Bit Twiddler](http://bits.stephan-brumme.com/)
 * [Bitwise Operations in C - Gamedev.net](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/bitwise-operations-in-c-r1563/)
-*[Bitwise Operators YouTube](https://www.youtube.com/results?search_query=bitwise+operators)
+* [Bitwise Operators YouTube](https://www.youtube.com/results?search_query=bitwise+operators)
