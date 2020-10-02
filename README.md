@@ -344,8 +344,8 @@ eg. ('d' ^ '`') => 4 ; ('x' ^ '`') => 24
 **Fast color conversion from R5G5B5 to R8G8B8 pixel format using shifts**
 ```
 R8 = (R5 << 3) | (R5 >> 2)
-G8 = (R5 << 3) | (R5 >> 2)
-B8 = (R5 << 3) | (R5 >> 2)
+G8 = (G5 << 3) | (G5 >> 2)
+B8 = (B5 << 3) | (B5 >> 2)
 ```
 Note: using anything other than the English letters will produce garbage results
 
