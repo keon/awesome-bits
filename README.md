@@ -338,6 +338,7 @@ eg. ('C' & '?') => 3 ; ('Z' ^ '@') => 26
 XOR by backtick/chr(96)/binary('1100000')/hex('60') => (x ^ '`')
 eg. ('d' ^ '`') => 4 ; ('x' ^ '`') => 24
 ```
+Note: using anything other than the English letters will produce garbage results
 
 ## Miscellaneous
 
@@ -347,7 +348,6 @@ R8 = (R5 << 3) | (R5 >> 2)
 G8 = (R5 << 3) | (R5 >> 2)
 B8 = (R5 << 3) | (R5 >> 2)
 ```
-Note: using anything other than the English letters will produce garbage results
 
 ## Additional Resources
 
