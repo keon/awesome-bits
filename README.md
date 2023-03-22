@@ -39,6 +39,16 @@ n >> 0
 5.7812 >> 0 // 5
 
 ```
+
+**Check if even**
+```
+(n & 1) == 0
+```
+
+**Check if odd**
+```
+(n & 1) != 0
+```
 **Get the maximum integer**
 ```
 int maxInt = ~(1 << 31);
